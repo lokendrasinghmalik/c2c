@@ -32,11 +32,12 @@
     "@nativescript/angular": "~9.0.0",
     "@nativescript/core": "~6.5.5",
     "@nativescript/theme": "~2.2.1",
-    "angularfire2": "^5.0.0-rc.4",
+    "@nstudio/nativescript-checkbox": "^1.0.0",
     "copy-webpack-plugin": "^5.1.1",
     "core-js": "^2.6.9",
     "reflect-metadata": "~0.1.12",
     "rxjs": "~6.5.5",
+    "tns-core-modules": "^6.5.8",
     "tslib": "1.10.0",
     "zone.js": "~0.10.2"
   },

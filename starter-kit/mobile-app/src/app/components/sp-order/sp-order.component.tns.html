@@ -1,0 +1,64 @@
+<ActionBar class="pull-left" >
+    <Button text="Logout" class="bg-red pull-right" style="width:20%"
+                (tap)="loginData.logout()">
+            </Button>
+</ActionBar>
+
+<Tabs selectedIndex="0">
+    <TabStrip>
+        <TabStripItem>
+            <Label text="Service Orders"></Label>
+        </TabStripItem>
+        <TabStripItem>
+            <Label text="Your Service"></Label>
+        </TabStripItem>
+    </TabStrip>
+
+    <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
+    <TabContentItem>
+        <FlexboxLayout flexDirection="column" height="50%"
+            verticalAlignment="top">
+            <StackLayout class="home-panel">
+                <Label *ngIf="noOrder" text="No service order found"></Label>
+                <ScrollView>
+                    <ListView *ngIf="!noOrder" [items]="orderDetails"
+                        style="height:2000px">
+                        <ng-template let-orderDetail="item">
+                            <FlexboxLayout flexDirection="row">        
+                                <Label [text]="orderDetail.address" class="t-12"
+                                    verticalAlignment="center" style="width: 60%">
+                                </Label>
+                                <Label [text]="orderDetail.mobileNumber" class="t-12"
+                                    verticalAlignment="center" style="width: 60%">
+                                </Label>
+                            </FlexboxLayout>
+                        </ng-template>
+                    </ListView>
+                </ScrollView>
+            </StackLayout>
+        </FlexboxLayout>
+    </TabContentItem>
+    <TabContentItem>
+        <FlexboxLayout flexDirection="column" height="50%"
+            verticalAlignment="center">
+            <TextField [(ngModel)]="spRate"
+                hint="Service Charges For Per Square Feet">
+            </TextField>
+
+            
+            <CheckBox:CheckBox  text="Chemical" id="myCheckbox" checked=true [(ngModel)]="chemical"/>
+    		<CheckBox:CheckBox text="Non-Chemical" checked="false" [(ngModel)]="nonChemical"/>
+
+            <Label *ngIf="error" [text]="errorText" color="red" class="red"></Label>
+            <Label *ngIf="success" color="green" text="Service successfully added" class="green"></Label>
+            
+            <Button text="Submit" class="btn btn-primary btn-submit"
+                (tap)="submit()">
+            </Button>
+        </FlexboxLayout>
+    </TabContentItem>
+</Tabs>
+
+
+<!-- Loader -->
+<app-loader></app-loader>

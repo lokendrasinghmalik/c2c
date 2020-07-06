@@ -1,0 +1,35 @@
+<ActionBar class="pull-left" >
+    <Button text="Logout" class="bg-red pull-right" style="width:20%"
+                (tap)="loginData.logout()">
+            </Button>
+</ActionBar>
+
+<Label [text]="errorText" class="red" *ngIf="error"></Label>
+<GridLayout class="full-window" *ngIf="!error">
+    <ScrollView>
+    <StackLayout class=" home-panel">
+
+        <GridLayout rows="auto,auto,auto,auto" 
+                class="card-align">
+                <Label row=0  [text]="'Name:-     ' + data.fullName"> </Label>
+                <Label  row=1 [text]="'MobileNo:- ' + data.mobileNumber"></Label>
+                <Label  row=2 [text]="'Email:-    ' + data.email"></Label>
+                <Label row=3  [text]="'Role:-     ' + data.role "></Label>
+            </GridLayout>
+        
+        <TextField [(ngModel)]="addressOfSanization"
+            hint="Address where sanitization needed">
+        </TextField>
+        <TextField [(ngModel)]="mobileNo" hint="Mobile number"
+            keyboardType="phone">
+        </TextField>
+        <Label text="Order placed successfully" color="green" class="green" *ngIf="success"></Label>
+        <Label [text]="errorText" class="red" color="red" *ngIf="error"></Label>
+        <Button text="Submit" class="btn btn-primary btn-submit" 
+            (tap)="submit()"></Button>
+    </StackLayout>
+</ScrollView>
+</GridLayout>
+
+<!-- Loader -->
+<app-loader></app-loader>

@@ -1,0 +1,49 @@
+<ActionBar [title]="title">
+    <ActionBar [title]="title">
+        <Button text="Log In" class="bg-red pull-right" style="width:20%"
+            (tap)="redirectToLogin()"></Button>
+    </ActionBar>
+</ActionBar>
+
+ <GridLayout>
+    <ScrollView>
+        <StackLayout>
+                <ListPicker class="list-picker" [items]="userTypeList" backgroundColor="#e7e7e7"
+                            selectedIndex="0" (selectedIndexChange)="userTypeChanged($event)">
+                </ListPicker>
+            <TextField [hint]="userDetails['role'] !== 'SERVICE_PROVIDER'?'Enter Full Name':'Enter Company Name'" autocorrect="false"
+                autocapitalizationType="none" [(ngModel)]="userDetails.fullName" >
+            </TextField>
+            <TextField hint="User Name"
+                autocorrect="false" autocapitalizationType="none"
+                [(ngModel)]="userDetails.username">
+            </TextField>
+            <TextField hint="Enter Address" autocorrect="false"
+                autocapitalizationType="none" [(ngModel)]="userDetails.address">
+            </TextField>
+            <TextField hint="Enter city" autocorrect="false"
+                autocapitalizationType="none" [(ngModel)]="userDetails.city">
+            </TextField>
+            <TextField hint="Enter Mobile No" keyboardType="phone"
+                autocorrect="false" autocapitalizationType="none"
+                [(ngModel)]="userDetails.mobileNumber">
+            </TextField>
+            <TextField hint="Email Id" keyboardType="email"
+                autocorrect="false" autocapitalizationType="none"
+                [(ngModel)]="userDetails.email">
+            </TextField>
+            <TextField hint="Password" secure="true"
+                [(ngModel)]="userDetails.password"></TextField>
+
+            <TextField hint="Confirm password"
+                [(ngModel)]="confirmPassword">
+            </TextField>
+            <Label *ngIf="error" class="error red" [text]="errorText"></Label>
+            <Button text="Sign Up" class="btn btn-primary btn-login" (tap)="signUp()"></Button>
+            
+        </StackLayout>
+    </ScrollView>
+</GridLayout>
+
+<!-- Loader -->
+<app-loader></app-loader>

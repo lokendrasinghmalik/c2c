@@ -1,0 +1,52 @@
+<ActionBar class="pull-left" >
+    <Button text="Logout" class="bg-red pull-right" style="width:20%"
+                (tap)="loginData.logout()">
+            </Button>
+</ActionBar>
+<Tabs selectedIndex="0">
+    <TabStrip>
+        <TabStripItem>
+            <Label text="Contribute Here"></Label>
+        </TabStripItem>
+        <TabStripItem>
+            <Label text="Your Contribution"></Label>
+        </TabStripItem>
+    </TabStrip>
+
+    <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
+    <TabContentItem>        
+        <StackLayout>
+            <TextField [(ngModel)]="cityName" autocapitalizationType="none"
+                hint="Enter city name for contribution">
+            </TextField>
+
+            <TextField [(ngModel)]="amount" keyboardType="phone"
+                hint="Enter contribution in rupees">
+            </TextField>
+            <Label *ngIf="error" [text]="errorText" class="red" color="red"></Label>
+            <Label *ngIf="success" text="Thanks for your contribution" class="green" color="green"></Label>
+            <Button text="Submit" class="btn btn-primary btn-submit btn-login"
+                (tap)="submit()">
+            </Button>
+        </StackLayout>
+    </TabContentItem>
+    <TabContentItem>
+        <Label *ngIf="noContribution" text="No Contribution found"></Label>
+        
+        <GridLayout *ngIf="!noContribution">
+            <ListView [items]="contributionDetails"
+                (itemTap)="onItemTap($event)" style="height:100%">
+                <ng-template let-contributionDetail="item">
+                    <FlexboxLayout flexDirection="row" text-align="center">
+                        <Label [text]="contributionDetail.amount"
+                            class="t-12" verticalAlignment="center"
+                            >
+                        </Label>
+                    </FlexboxLayout>
+                </ng-template>
+            </ListView>
+        </GridLayout>
+    </TabContentItem>
+</Tabs>
+<!-- Loader -->
+<app-loader></app-loader>

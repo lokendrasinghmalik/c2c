@@ -1,0 +1,24 @@
+/* .btn-submit{
+    border-radius: 3;
+    background-color: #283e71;
+    font-size: 16;
+    width: 90%;
+    font-family: 'Open Sans', 'OpenSans-Regular';
+    color: white;
+} */
+
+/* Set a style for all buttons */
+button {
+    background-color: #283e71;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+  }
+  
+  button:hover {
+    opacity:1;
+  }

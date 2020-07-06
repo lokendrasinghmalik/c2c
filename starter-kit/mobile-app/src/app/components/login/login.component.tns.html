@@ -1,0 +1,33 @@
+<ActionBar [title]="title">
+    <Button text="Sign Up" class="bg-red pull-right" style="width:20%"
+        (tap)="routeToSignUp()"></Button>
+</ActionBar>
+
+<GridLayout>
+    <ScrollView>
+        <StackLayout>
+            <Image src="~/assets/images/sanatizationHomeImage.png" width="50%"
+                stretch="aspectFit">
+            </Image>
+
+            <ListPicker class="list-picker" [items]="userTypeList" backgroundColor="#e7e7e7"
+                            selectedIndex="0" (selectedIndexChange)="userTypeChanged($event)">
+            </ListPicker>
+            <TextField autocorrect="false" autocapitalizationType="none"
+                     hint="User Name" name="userName" [(ngModel)]="userDetails.username">
+            </TextField>
+            
+            <TextField secure="true" autocorrect="false" autocapitalizationType="none"
+                     hint="Password" name="password" [(ngModel)]="userDetails.password">
+            </TextField>
+            <Label *ngIf="error" class="red" [text]="errorText" color="red"></Label>
+            <Button text="Log In" class="btn btn-primary btn-login"
+                (tap)="login()"></Button>
+            <Button text="View Service Providers"
+                class="btn btn-primary btn-login" (tap)="routeToServiceProvider()"></Button>
+        </StackLayout>
+    </ScrollView>
+</GridLayout>
+
+<!-- Loader -->
+<app-loader></app-loader>
