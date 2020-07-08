@@ -1,42 +1,48 @@
 <ActionBar class="pull-left" title="Service Provider">
-    <Button text="Logout" class="bg-red pull-right" style="width:20%" *ngIf="loginService.isLoggedIn"
-                (tap)="loginService.logout()">
-            </Button>
-    <Button text="Log In" class="bg-red pull-right" style="width:20%" *ngIf="!loginService.isLoggedIn"
-                (tap)="redirectToLogin()">
+    <Button text="Logout" class="bg-red pull-right" style="width:20%" *ngIf="loginService.isLoggedIn" (tap)="loginService.logout()">
+    </Button>
+    <Button text="Log In" class="bg-red pull-right" style="width:20%" *ngIf="!loginService.isLoggedIn" (tap)="redirectToLogin()">
     </Button>
 </ActionBar>
 
 <GridLayout>
     <ScrollView>
-    <StackLayout>
-        <SearchBar hint="Search city" [text]="searchPhrase"
-            backgroundColor="#e6ffcc" (submit)="onSearchSubmit($event)">
-        </SearchBar>
-        <Label *ngIf="error" class="red" color="red" [text]="errorText"></Label>
-        <Label *ngIf="spData.isContributed" [text]="'City under contribution : ' + spData.isContributed"></Label>
-        
-        <ScrollView *ngIf="spData">            
-            <ListView [items]="spData.list" (itemTap)="onItemTap($event)"
-                style="height:2000px">
-                <ng-template let-country="item">
-                    <FlexboxLayout flexDirection="row">
+        <StackLayout>
+            <SearchBar hint="Search city" [text]="searchPhrase" backgroundColor="#e6ffcc" (submit)="onSearchSubmit($event)">
+            </SearchBar>
+            <Label *ngIf="error" class="red" color="red" [text]="errorText"></Label>
+            <Label *ngIf="spData.isContributed" class="center" [text]="'City under contribution : ' + spData.isContributed"></Label>
 
-                        <Label [text]="country.fullName" class="t-12"
-                            verticalAlignment="center" style="width: 60%">
-                        </Label>
-                        <Label [text]="country.mobileNumber" class="t-12"
-                            verticalAlignment="center" style="width: 60%">
-                        </Label>
-                        <Label [text]="country.email" class="t-12"
-                            verticalAlignment="center" style="width: 60%">
-                        </Label>
-                    </FlexboxLayout>
-                </ng-template>
-            </ListView>
-        </ScrollView>
-    </StackLayout>
-</ScrollView>
+            <Label *ngIf="spData.state" class="center">
+                <FormattedString>
+                    <Span text="State : "></Span>
+                    <Span [text]="spData.state" class="state"></Span>
+                </FormattedString>
+            </Label>
+            <Label *ngIf="spData.zone" class="center">
+                <FormattedString>
+                    <Span text="Zone : "></Span>
+                    <Span [text]="spData.zone" [color]="spData.zone"></Span>
+                </FormattedString>
+            </Label>
+            <!-- <Label *ngIf="spData.zone" [text]="'Zone : ' + spData.zone"></Label>
+            <Label *ngIf="spData.zone" [text]="spData.zone" class="zone"></Label> -->
+
+            <ScrollView *ngIf="spData">
+                <ListView [items]="spData.list" (itemTap)="onItemTap($event)" style="height:2000px">
+                    <ng-template let-country="item">
+                        <FlexboxLayout flexDirection="row">
+
+                            <Label [text]="country.fullName" class="t-12" verticalAlignment="center" style="width: 80%">
+                            </Label>
+                            <Label [text]="country.mobileNumber" class="t-12" verticalAlignment="center" style="width: 80%">
+                            </Label>
+                        </FlexboxLayout>
+                    </ng-template>
+                </ListView>
+            </ScrollView>
+        </StackLayout>
+    </ScrollView>
 </GridLayout>
 
 <!-- Loader -->

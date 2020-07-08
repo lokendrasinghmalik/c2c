@@ -9,3 +9,14 @@
     margin-bottom: 15;
 } 
   */
+
+  .state{
+      color: green;
+      font-weight: bold;
+      text-transform: uppercase;
+
+  }
+.center{
+    text-align: center;
+    font-size: 14px;
+}
